@@ -1,0 +1,4 @@
+jupyter
+nose2[coverage_plugin]==0.6.5
+apache-airflow==1.9.0
+psycopg2
