@@ -4,8 +4,8 @@ LABEL maintainer="Quantworks Inc."
 
 ARG AIRFLOW_HOME=/usr/local/airflow
 WORKDIR /usr/local/airflow
-COPY ./script/install_dev.sh .
-COPY ./script/requirements_dev.txt .
+COPY ./scripts/install_dev.sh .
+COPY ./scripts/requirements_dev.txt .
 
 RUN apk update && \
     apk add --no-cache curl bash python3-dev && \
@@ -17,7 +17,7 @@ RUN apk update && \
     apk del .build-deps
 
 COPY ./airflow.cfg .
-COPY ./script/entrypoint_dev.sh .
+COPY ./scripts/entrypoint_dev.sh .
 
 ENV AIRFLOW_HOME ${AIRFLOW_HOME}
 
