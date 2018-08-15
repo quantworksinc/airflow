@@ -1,2 +1,6 @@
-# Airflow Docker
-This repository is used to create docker image for airflow using alpine as base.
+# Airflow
+
+This repository is used to create a docker image of Apache Airflow based on Alpine.
+
+Notes:
+- Only support PostgreSQL
