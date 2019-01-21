@@ -2,7 +2,9 @@ FROM alpine:3.7
 LABEL maintainer="it@quantworks.com"
 
 
+ENV AIRFLOW_VERSION=1.10.2rc3
 ENV AIRFLOW_HOME=/usr/local/airflow
+ENV AIRFLOW_GPL_UNIDECODE=true
 
 ENV AIRFLOW_USER=airflow
 ENV AIRFLOW_PASS=airflow
@@ -44,12 +46,12 @@ RUN mkdir /usr/local/airflow \
         setuptools \
     && pip3 install --no-binary :all: cython
 
-RUN wget https://github.com/apache/incubator-airflow/archive/1.10.0rc2.tar.gz \
-    && tar -xzf 1.10.0rc2.tar.gz \
-    && cd incubator-airflow-1.10.0rc2 \
+RUN wget https://github.com/apache/airflow/archive/${AIRFLOW_VERSION}.tar.gz \
+    && tar -xzf ${AIRFLOW_VERSION}.tar.gz \
+    && cd airflow-${AIRFLOW_VERSION} \
     && pip3 install -e .[crypto,password,postgres,s3,slack] \
     && cd .. \
-    && rm 1.10.0rc2.tar.gz
+    && rm ${AIRFLOW_VERSION}.tar.gz
 
 COPY ./requirements.txt .
 RUN pip3 install --no-build-isolation -r ./requirements.txt \
